@@ -260,4 +260,203 @@ function decrease () {
 
 // ---------------------------------  Chapter_43 to 48 (EVENTS) -----------------------------------
 
+// --//1. Show an alert box on click on a link.
+function clickAlert () {
+  alert ('hello world');
+}
+
+//2. Display some Mobile images in browser. On click on an image Show the message in alert to user.
+function showAlert () {
+  alert ('Thank you for buying mobile from us');
+}
+
+//3. Display 10 student records in table and each row should contain a delete button.
+///If you click on a button to delete a record, entire row should be deleted.
+function deleteData (delBtn) {
+  var data = document.getElementById ('data');
+  data.deleteRow (delBtn.parentNode.parentNode.rowIndex);
+}
+
+//5. Show a counter in browser. Counter should increase on click on increase button and decrease on click on decrease button.
+//And show updated counter value in browser.
+function increase () {
+  var add = document.getElementById ('value').innerHTML;
+  add = parseInt (add);
+  add = add + 1;
+  document.getElementById ('value').innerHTML = add;
+}
+
+function decrease () {
+  var del = document.getElementById ('value').innerHTML;
+  del = parseInt (del);
+  del = del - 1;
+  document.getElementById ('value').innerHTML = del;
+}
 // ----------------------------------------  Chapter_43 to 48 End -----------------------------------------
+
+// ---------------------------------  Chapter_49 to 52 (EVENTS) -----------------------------------
+//1. Create a signup form and display form data in your web page on submission.
+function signup () {
+  var name = document.getElementById ('name').value;
+  var fname = document.getElementById ('fname').value;
+  var email = document.getElementById ('email').value;
+  var contact = document.getElementById ('contact').value;
+  var address = document.getElementById ('address').value;
+
+  document.write ('Name = ' + name + '<br>');
+  document.write ('Father Name = ' + fname + '<br>');
+  document.write ('email = ' + email + '<br>');
+  document.write ('contact = ' + contact + '<br>');
+  document.write ('address = ' + address + '<br>');
+}
+
+//2. Suppose in your webpage there is content area in which you have entered your item details, but user can only see some details on first look.
+//When user clicks on “Read more” button, full detail of that particular item will be displayed.
+function readMore () {
+  // var before = document.getElementById('before').innerHTML;
+  var add =
+    "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.";
+  document.getElementById ('before').innerHTML = add;
+}
+
+//3. Create a form which takes student’s details and show each student detail in table. Each row of table must contain a delete button and an edit button. On click on delete button entire row should be deleted. On click on edit button, a hidden form will appear with the values of that row.
+
+var table = document.getElementById ('recordTable');
+
+function addRecord () {
+  var studentName = document.getElementById ('stdName');
+  var studentClass = document.getElementById ('stdClass');
+  var row = document.createElement ('tr');
+  var nametd = document.createElement ('td');
+  var classtd = document.createElement ('td');
+  var edittd = document.createElement ('td');
+  var deletetd = document.createElement ('td');
+  var nameText = document.createTextNode (studentName.value);
+  var classText = document.createTextNode (studentClass.value);
+  var editBtn = document.createElement ('button');
+  var editText = document.createTextNode ('Edit');
+  editBtn.setAttribute ('onclick', 'editRecord(this)');
+  editBtn.appendChild (editText);
+  var delBtn = document.createElement ('button');
+  var delText = document.createTextNode ('Delete');
+  delBtn.setAttribute ('onclick', 'deleteRecord(this)');
+  delBtn.appendChild (delText);
+
+  nametd.appendChild (nameText);
+  classtd.appendChild (classText);
+  edittd.appendChild (editBtn);
+  deletetd.appendChild (delBtn);
+  row.appendChild (nametd);
+  row.appendChild (classtd);
+  row.appendChild (edittd);
+  row.appendChild (deletetd);
+  table.appendChild (row);
+
+  studentName.value = '';
+  studentClass.value = '';
+}
+
+function editRecord (e) {
+  var val = e.parentNode.parentNode.firstChild.innerText;
+  var newVal = prompt ('Edit your record', val);
+  var classval = e.parentNode.parentNode.firstChild.nextSibling.innerText;
+  var newClass = prompt ('Edit your Class', classval);
+  e.parentNode.parentNode.firstChild.innerText = newVal;
+  e.parentNode.parentNode.firstChild.nextSibling.innerText = newClass;
+}
+
+function deleteRecord (e) {
+  e.parentNode.parentNode.remove ();
+}
+// ----------------------------------------  Chapter_49 to 52 End -----------------------------------------
+
+// ---------------------------------  Chapter_53 to 57 (EVENTS) -----------------------------------
+
+// 1. Consider you have 4 images in a file as shown below: Now When you click on an image it should display in a modal.
+
+function closeModal () {
+  document.getElementById ('main').className = 'hidden';
+}
+
+function showModal (id, src) {
+  document.getElementById ('main').className = 'visible';
+  var imageModal = document.getElementById ('modalImg');
+  var image = document.getElementById (id);
+  imageModal.src = src;
+}
+
+// 2. Create a paragraph and two buttons “zoom in "(+) and “zoom out"(-).
+
+function zoomIn () {
+  var font = document.getElementById ('pera').style.fontSize;
+  font = font.slice (0, length - 2);
+  font = parseInt (font);
+  font += 10;
+  font = font + 'px';
+  document.getElementById ('pera').style.fontSize = font;
+}
+
+function zoomOut () {
+  var font = document.getElementById ('pera').style.fontSize;
+  font = font.slice (0, length - 2);
+  font = parseInt (font);
+  font -= 10;
+  font = font + 'px';
+  document.getElementById ('pera').style.fontSize = font;
+}
+// ----------------------------------------  Chapter_53 to 57 End -----------------------------------------
+
+// ---------------------------------  Chapter_58 to 67 (DOM) -----------------------------------
+
+// ------------TASK O1 ----------------
+
+//i. Get element of id “main-content” and assign them in a variable
+var main = document.getElementById ('main-content');
+
+//ii. Display all child elements of “main-content” element.
+console.log (main.children);
+
+//iii. Get all elements of class “render” and show their innerHTML in browser.
+var render = document.getElementsByClassName ('render');
+for (i = 0; i < render.length; i++) {
+  document.write (render[i].innerHTML + '<br>');
+}
+
+//iv. Fill input value whose element id first-name using javascript.
+var fName = document.getElementById ('first-name');
+fName.value = 'khansa';
+
+//v. Repeat part iv for id ”last-name” and “email”.
+var lName = document.getElementById ('last-name');
+lName.value = 'siraj';
+
+var email = document.getElementById ('email');
+email.value = 'khansasiraj@yahoo.com';
+
+// ------------TASK O2 ----------------
+
+//i. What is node type of  element having id “form-content”.
+var a = document.getElementById ('form-content').nodeType;
+console.log (a);
+
+//ii. Show node type of element having id “lastName” and its child node.
+var b = document.getElementById ('lastName');
+console.log (b.nodeType);
+console.log (b.childNodes.nodeType);
+
+//iii. Update child node of element having id “lastName”.
+b.innerHTML = 'Updated Text';
+
+// iv. Get First and last child of id “main-content”.
+var fChild = document.getElementById ('main-content').firstChild;
+var lChild = document.getElementById ('main-content').lastChild;
+
+// v. Get next and previous siblings of id “lastName”.
+var nSibling = document.getElementById ('lastName').nextSibling;
+var pSibling = document.getElementById ('lastName').previousSibling;
+
+// vi. Get parent node and node type of element having id “email”
+var pId = document.getElementById ('email').parentNode;
+var nType = document.getElementById ('email').nodeType;
+
+// ----------------------------------------  Chapter_58 to 67 End -----------------------------------------
